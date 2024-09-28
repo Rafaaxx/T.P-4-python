@@ -1,1 +1,3 @@
-
+persona={"nombre":"Juan", "edad":"30 años", "ciudad":"Madrid"}
+persona["ciudad"]="Valencia"
+print (persona)
