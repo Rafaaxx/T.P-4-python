@@ -1,0 +1,58 @@
+producto1 = ("Limpiapisos", 30)
+producto2 = ("Limpiavidrios", 25)
+producto3 = ("Trapo de piso", 10)
+producto4 = ("Esponja", 12)
+producto5 = ("Detergente", 15)
+
+productos = {
+    "A001": producto1,
+    "A002": producto2,
+    "A003": producto3,
+    "A004": producto4,
+    "A005": producto5
+}
+
+def mostrar_inventario(productos):
+    for clave, valor in productos.items():
+        print(f"Clave del producto: {clave}. Descripción del producto: {valor[0]}. Precio: ${valor[1]}")
+
+def buscar_producto(productos):
+    valor_introducido = input("Introduzca una clave para buscar si existe, y el producto que contiene: ")
+    buscar = productos.get(valor_introducido, "No especificada")
+    print("")
+    if buscar != "No especificada":
+        print(f"Clave del producto: {valor_introducido}. Descripción del producto: {buscar[0]}. Precio: ${buscar[1]}")
+    else:
+        print("La clave introducida no se encuentra en el inventario.")
+
+def modificar_precio(productos):
+    valor_introducido = input("Introduzca una clave para luego modificar el precio dentro de ella: ")
+    print("")
+    if valor_introducido in productos:
+        nuevo_precio = float(input("Ahora escriba el nuevo valor para reemplazar al anterior: "))
+        productos[valor_introducido] = (productos[valor_introducido][0], nuevo_precio)
+    else:
+        print("La clave introducida no se encuentra en el inventario.")
+
+def eliminar_producto(productos):
+    valor_introducido = input("Introduzca una clave para luego eliminar el producto dentro de ella: ")
+    print("")
+    if valor_introducido in productos:
+        productos.pop(valor_introducido)
+        print(f"El producto con la clave {valor_introducido} ha sido eliminado.")
+    else:
+        print("La clave introducida no se encuentra en el inventario.")
+
+def productos_por_rango_de_precio(productos):
+    print("")
+    min_precio = float(input("Diga el precio mínimo: "))
+    max_precio = float(input("Diga el precio máximo: "))
+    for clave, valor in productos.items():
+        if min_precio <= valor[1] <= max_precio:
+            print(f"Clave del producto: {clave}. Descripción del producto: {valor[0]}. Precio: ${valor[1]}")
+
+mostrar_inventario(productos)
+buscar_producto(productos)
+modificar_precio(productos)
+eliminar_producto(productos)
+productos_por_rango_de_precio(productos)
